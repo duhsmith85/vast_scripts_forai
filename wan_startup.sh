@@ -16,15 +16,6 @@ mkdir -p "$MODELS"/{checkpoints,loras,vae,controlnet}
 apt-get update
 apt-get install -y git wget aria2
 
-# ---- Pull / update ComfyUI itself ----
-if [ -d "$COMFY_DIR/.git" ]; then
-  echo "Updating ComfyUI..."
-  git -C "$COMFY_DIR" pull
-else
-  echo "Cloning ComfyUI..."
-  git clone https://github.com/comfyanonymous/ComfyUI.git "$COMFY_DIR"
-fi
-
 # ---- Install custom nodes (extensions) ----
 cd "$CUSTOM_NODES"
 
