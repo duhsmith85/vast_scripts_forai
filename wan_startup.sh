@@ -70,26 +70,30 @@ echo "Downloading models..."
 hf download ashllay/YOLO_Models bbox/Eyeful_v2-Paired.pt --local-dir ultralytics/bbox
 hf download Kijai/WanVideo_comfy FastWan/Wan2_2-TI2V-5B-FastWanFullAttn_bf16.safetensors --local-dir diffusion_models
 hf download city96/umt5-xxl-encoder-gguf umt5-xxl-encoder-Q8_0.gguf --local-dir clip
-hf download QuantStack/Wan2.1_14B_VACE-GGUF Wan2.1_14B_VACE-Q8_0.gguf --local-dir unet
-hf download ussoewwin/Wan2.2_T2V_A14B_VACE-test_fp16_GGUF Wan2.2_T2V_High_Noise_14B_VACE_fp16.gguf --local-dir unet
-hf download ussoewwin/Wan2.2_T2V_A14B_VACE-test_fp16_GGUF Wan2.2_T2V_Low_Noise_14B_VACE_fp16.gguf --local-dir unet
+# hf download QuantStack/Wan2.1_14B_VACE-GGUF Wan2.1_14B_VACE-Q8_0.gguf --local-dir unet
+hf download lym00/Wan2.2_T2V_A14B_VACE-test Wan2.2_T2V_High_Noise_14B_VACE-Q8_0.gguf --local-dir unet
+hf download lym00/Wan2.2_T2V_A14B_VACE-test Wan2.2_T2V_Low_Noise_14B_VACE-Q8_0.gguf --local-dir unet
 
 # aria2c -c -x 8 -s 8 -d vae \
 #   https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors
 
-wget -P ComfyUI/models/vae "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" --content-disposition
+wget -P vae "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors" --content-disposition
 
 # LoRA (example)
 # https://civitai.com/models/1613190/wan-14b-boob-size-slider
-wget -P ComfyUI/models/loras "https://civitai.com/api/download/models/1825608?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+wget -P loras "https://civitai.com/api/download/models/1825608?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
 # https://civitai.com/models/1307155/wan-22-experimental-wan-general-nsfw-model
-wget -P ComfyUI/models/loras "https://civitai.com/api/download/models/2073605?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
-wget -P ComfyUI/models/loras "https://civitai.com/api/download/models/2083303?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
-hf download DAKARA555/Wan_Breast_Helper_Hearmeman Wan_Breast_Helper_Hearmeman.safetensors --local-dir ComfyUI/models/loras
+wget -P loras "https://civitai.com/api/download/models/2073605?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+wget -P loras "https://civitai.com/api/download/models/2083303?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+hf download DAKARA555/Wan_Breast_Helper_Hearmeman Wan_Breast_Helper_Hearmeman.safetensors --local-dir loras
 # https://civitai.com/models/2109996/wan-22-pussy-and-anus-lora
-wget -P ComfyUI/models/loras "https://civitai.com/api/download/models/2387016?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+wget -P loras "https://civitai.com/api/download/models/2387016?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+# https://civitai.com/models/1434650/nsfwfemale-genitals-helper-for-wan-t2vi2v?modelVersionId=1621698
+wget -P loras "https://civitai.com/api/download/models/1621698?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
 # https://civitai.com/models/1713337?modelVersionId=1938875  -  self_forcing
-wget -P ComfyUI/models/loras "https://civitai.com/api/download/models/1938875?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+wget -P loras "https://civitai.com/api/download/models/1938875?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
+# https://civitai.com/models/2077390/wan-21-14b-t2v-breast-and-nipples-helper  - 2.3GB!!
+wget -P loras "https://civitai.com/api/download/models/2350593?&token=dec1abd15d9725beeeaa7df9616c4eb1" --content-disposition
 
 echo "Updating Comfy Frontend"
 pip install --upgrade comfyui-frontend-package
